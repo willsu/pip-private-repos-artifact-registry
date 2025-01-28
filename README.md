@@ -17,13 +17,13 @@ The scripts are designed to be run on an environment with the following general 
 
 The following is an outline of behavior of the included scripts:
 
-1) Open a shell to the Public Compute Engine instance: 
-  a) Download "keyring", "keyrings.google_artifactregistry-auth", and all transitive dependencies.
-  b) Upload all packages to the "pip-auth-repo" registry.
+1) Open a shell to the Public Compute Engine instance:
+  * Download "keyring", "keyrings.google_artifactregistry-auth", and all transitive dependencies.
+  * Upload all packages to the "pip-auth-repo" registry.
 2) Open a shell to the Private Compute Engine instance:
-  a) Install the Artifact Registry authentication helpers from the "pip-auth-repo" (using 'gcloud')
-  b) Configure the local pip environment to only use the Python Artifact Registry repository of your choice.
-  c) "pip install" any packages from "my-private-pip-packages".
+  * Install the Artifact Registry authentication helpers from the "pip-auth-repo" (using 'gcloud')
+  * Configure the local pip environment to only use the Python Artifact Registry repository of your choice.
+  * "pip install" any packages from "my-private-pip-packages".
   
   Usage:
 
