@@ -6,7 +6,21 @@ Google Cloud users with high security requirements may be forced to provision co
 
 Artifact Registry provides good guidance on [configuring authentication to Artifact Registry for Python package repositories](https://cloud.google.com/artifact-registry/docs/python/authentication), but unfortunately this approach does not work directly on a no-public-egress network configuration. The "keyring", "keyrings.google_artifactregistry-auth", and transitive dependencies are hosted on the public internet via the default from the PyPi index. Given that our host will have no connectity to the PyPi index, we're presented with a bit of a "chicken or the egg" problem that we need to circumvent.
 
-This sample guide provides scripts to pre-populate the required Python authentication helper libraries in an Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
+This sample guide provides 2 potential solutions for this challenge:
+1) Using a Python Artifact Registry Remote Repository pointing to PyPi accessed via "Private Host" (<-- most straightforward)
+
+![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/70b85523-d523-450e-9af9-2a4e01a0b887)
+
+3) Using a Python Artifact Registry Standard Repository pre-populated by a "Public Host", and then accessed by a "Private Host"
+
+![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/a928815c-9a89-4d95-b862-1dd4cc2a4b0f)
+
+
+
+### 1) TODO
+
+### 2) Artifact Registry Standard Repository
+This sample solution provides scripts to pre-populate the required Python authentication helper libraries in an Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
 
 The scripts are designed to be run on an environment with the following general configuration:
 1) "Public" VPC: Create a VPC with a subnet and attach a NAT Gateway
