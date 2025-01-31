@@ -19,5 +19,5 @@ pip install keyring keyrings.google-artifactregistry-auth \
 
 echo "Success: Keyring and keyrings.google-artifactregistry-auth installed."
 echo "Next: Run ./configure-pip-env.sh to configure your local environment"
-echo "Note: Change the \"PIP_REPO\" var if you plan to pull private packages from a different directory"
+echo "Note: Change the \"PIP_REPO\" var if you plan to pull private packages from a different repository"
 
