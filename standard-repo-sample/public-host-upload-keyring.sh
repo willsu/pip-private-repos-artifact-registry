@@ -4,8 +4,6 @@ set -euo pipefail
 # e.g. PIP_REPO=my-pip-repo
 # e.g. PIP_HOST=us-central1-python.pkg.dev/my-project-id
 
-SCRIPT_PATH=$(dirname "$(realpath "$0")")
-
 PATH=${PATH}:/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin
 
 # Use the access token from the currently authorized user (by default, the attached Service Account).
