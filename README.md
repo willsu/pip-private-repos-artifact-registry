@@ -139,10 +139,5 @@ Your host is now ready to install pip packages from your Artifact Repostitory Py
 # You are now able to install packages via pip from your configured Artiface Registry repositories.
 pip install my-private-package
 ```
-
-
-  ```
-
-  8) Done!
  
-  Your host is now ready to install pip packages from your Artifact Repostitory Python repos.
+Your host is now ready to install pip packages from your Artifact Repostitory Python repos.
