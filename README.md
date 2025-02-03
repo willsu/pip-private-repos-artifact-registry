@@ -26,7 +26,7 @@ Note: The configuration scripts will configure the hosts to use the Python binar
 ### 1) Artifact Registry Remote Repository
 This sample solution provides scripts to pre-populate the required Python authentication helper libraries in a Standard Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
 
-The scripts are designed to be run on an environment with the following general configuration:
+Provision the following resources in your Google Cloud environment:
 1) "Private" VPC: a VPC with a subnet (no NAT Gateway, Private Google Access enabled)
 2) "remote-pip-repo" a Remote Artifact Registry Repository for Python configured to use the PyPi Index.
 3) "private-host": a "Private" Compute Engine instance and attached to the Private VPC network\
@@ -74,7 +74,7 @@ pip install my-private-package
 ### 2) Artifact Registry Standard Repository
 This sample solution provides scripts to pre-populate the required Python authentication helper libraries in a Standard Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
 
-The scripts are designed to be run on an environment with the following general configuration:
+Provision the following resources in your Google Cloud environment:
 1) "Public" VPC: Create a VPC with a subnet and attach a NAT Gateway
 2) "Private" VPC: Create a VPC with a subnet (no NAT Gateway, Private Google Access enabled)
 3) "pip-auth-repo" Python Artifact Registry Repository for the Artifact Registry authentication helper libraries.
