@@ -11,23 +11,69 @@ This sample guide provides 2 potential solutions for this challenge:
 
 ![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/70b85523-d523-450e-9af9-2a4e01a0b887)
 
-3) Using a Python Artifact Registry Standard Repository pre-populated by a "Public Host", and then accessed by a "Private Host"
+2) Using a Python Artifact Registry Standard Repository pre-populated by a "Public Host", and then accessed by a "Private Host"
 
 ![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/a928815c-9a89-4d95-b862-1dd4cc2a4b0f)
 
 
+Note: The configuration scripts will configure the hosts to use the Python binaries located in the "/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin", which is typical of stock GCE VM images running on Google Cloud. Please modify that scripts to use a different Python installation if needed.
 
-### 1) TODO
+### 1) Artifact Registry Remote Repository
+The scripts are designed to be run on an environment with the following general configuration:
+1) "Private" VPC: a VPC with a subnet (no NAT Gateway, Private Google Access enabled)
+2) "remote-pip-repo" a Remote Artifact Registry Repository for Python configured to use the PyPi Index.
+3) "private-host": a "Private" Compute Engine instance and attached to the Private VPC network\
+4) "Compute Service Acount": grant the "Artifact Registry Reader" Role to the default Computer Service account (or whatever Service Account is attached to the "private-host")
+
+Instructions:
+
+0) Ensure you have the Google Cloud resource provisioned as described above
+
+1) Open a shell via SSH to the "Private" compute instance and copy over this repo
+
+2) Configure env vars:
+
+  ```BASH
+  # Set REGION and PROJECT_ID, or replace the PIP_REPO_HOST var accordingly.
+  # Omit the scheme in the PIP_REPO_HOST ('https://' will be used by default) var.
+
+  export PIP_REPO_HOST=${REGION}-python.pkg.dev/${PROJECT_ID}
+  export PIP_REPO=my-pip-repo
+  ```
+
+3) Run the private host installer script
+
+  ```BASH
+  ./private-host-install-keyring.sh
+  ```
+
+4) Configure pip environment for use with private Artifact Registry repos 
+
+  Note: If you use a different Artifact Registry repository for your own private packages (recommended), set the "PIP_REPO" and/or "PIP_REPO_HOST" variable accordingly
+
+  ```BASH
+  ./configure-pip-env.sh
+
+  source ~/.profile
+  ```
+ 
+Your host is now ready to install pip packages from your Artifact Repostitory Python repos!
+
+```BASH
+# You are now able to install packages via pip from your configured Artiface Registry repositories.
+pip install my-private-package
+```
 
 ### 2) Artifact Registry Standard Repository
 This sample solution provides scripts to pre-populate the required Python authentication helper libraries in an Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
 
 The scripts are designed to be run on an environment with the following general configuration:
 1) "Public" VPC: Create a VPC with a subnet and attach a NAT Gateway
-2) "Private" VPC: Create a VPC with a subnet (no NAT Gateway)
-3) "pip-auth-repo" Python Artifact Registry Repository for ONLY the Artifact Registry authentication helper libraries.
+2) "Private" VPC: Create a VPC with a subnet (no NAT Gateway, Private Google Access enabled)
+3) "pip-auth-repo" Python Artifact Registry Repository for the Artifact Registry authentication helper libraries.
 4) "my-private-pip-packages" Python Artifact Registry Repository for all other private python repositories that you want to install.
-4) "pip-auth-repo": a "Public" Compute Engine instance and attached it to the Public VPC network (alternatively provision the host with an "External IP Address")
+5) "public-host": a "Public" Compute Engine instance and attached to the Public VPC network (alternatively provision the host with an "External IP Address")
+4) "private-host": a "Private" Compute Engine instance and attached to the Private VPC network
 
 The following is an outline of behavior of the included scripts:
 
