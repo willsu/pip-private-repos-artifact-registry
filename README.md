@@ -1,3 +1,5 @@
+### Description
+
 This project provides a working sample for integrating a Google Cloud Compute Engine instance running a network with no public egress connectivity with an Artifact Registry Python Repository.
 
 Note: This project is not intended for production use. Please use this as reference material and automate accordingly.
@@ -5,6 +7,8 @@ Note: This project is not intended for production use. Please use this as refere
 Google Cloud users with high security requirements may be forced to provision compute workloads on networks with no public egress connectivity to the public Internet. Those compute workloads may be required to pull in packages (e.g. Python packages) from a package repository to build the software required to run the workload.
 
 Artifact Registry provides good guidance on [configuring authentication to Artifact Registry for Python package repositories](https://cloud.google.com/artifact-registry/docs/python/authentication), but unfortunately this approach does not work directly on a no-public-egress network configuration. The "keyring", "keyrings.google_artifactregistry-auth", and transitive dependencies are hosted on the public internet via the default from the PyPi index. Given that our host will have no connectity to the PyPi index, we're presented with a bit of a "chicken or the egg" problem that we need to circumvent.
+
+### Solutions
 
 This sample guide provides 2 potential solutions for this challenge:
 
@@ -17,7 +21,7 @@ Option 2: Using a Python Artifact Registry Standard Repository pre-populated by 
 ![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/a928815c-9a89-4d95-b862-1dd4cc2a4b0f)
 
 
-Note: The configuration scripts will configure the hosts to use the Python binaries located in the "/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin", which is typical of stock GCE VM images running on Google Cloud. Please modify that scripts to use a different Python installation if needed.
+Note: The configuration scripts will configure the hosts to use the Python binaries located in the "/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin", which is typical of stock GCE VM images running on Google Cloud. Please modify the scripts to use a different Python installation, if needed.
 
 ### 1) Artifact Registry Remote Repository
 This sample solution provides scripts to pre-populate the required Python authentication helper libraries in a Standard Artifact Registry repo, install the authentication helper libaries on the private host, and configure the "pip" utility to only fetch packages from your private Artifact Registry repository.
