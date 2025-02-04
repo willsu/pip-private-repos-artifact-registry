@@ -14,12 +14,10 @@ This sample guide provides 2 potential solutions for this challenge:
 
 Option 1: Using a Python Artifact Registry Remote Repository pointing to PyPi accessed via "Private Host" (<-- most straightforward)
 
-![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/70b85523-d523-450e-9af9-2a4e01a0b887)
+![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/570a759d-1207-4e10-a892-b92bb5a7165e)
 
 Option 2: Using a Python Artifact Registry Standard Repository pre-populated by a "Public Host", and then accessed by a "Private Host"
-
-![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/a928815c-9a89-4d95-b862-1dd4cc2a4b0f)
-
+![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/83b1cd84-1202-4877-aa4e-9a789a3360c5)
 
 Note: The configuration scripts will configure the hosts to use the Python binaries located in the "/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin", which is typical of stock GCE VM images running on Google Cloud. Please modify the scripts to use a different Python installation, if needed.
 
