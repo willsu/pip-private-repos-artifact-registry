@@ -77,8 +77,9 @@ Provision the following resources in your Google Cloud environment:
 3) "pip-auth-repo" Python Artifact Registry Repository for the Artifact Registry authentication helper libraries.
 4) "my-private-pip-packages" Python Artifact Registry Repository for all other private python repositories that you want to install.
 5) "public-host": a "Public" Compute Engine instance and attached to the Public VPC network (alternatively provision the host with an "External IP Address")
-4) "private-host": a "Private" Compute Engine instance and attached to the Private VPC network
-  
+6) "private-host": a "Private" Compute Engine instance and attached to the Private VPC network
+7) "Compute Service Acount": grant the "Artifact Registry Reader" and "Artifact Registry Writer" Roles to the default Computer Service account (or whatever Service Account is attached to the "private-host")
+
 Installation:
 0) Ensure you have provisioned the Google Cloud resources as described above.
 
