@@ -13,11 +13,10 @@ Artifact Registry provides good guidance on [configuring authentication to Artif
 This sample guide provides 2 potential solutions for this challenge:
 
 Option 1: Using a Python Artifact Registry Remote Repository pointing to PyPi accessed via "Private Host" (<-- most straightforward)
-
-![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/570a759d-1207-4e10-a892-b92bb5a7165e)
+![pip_private_ar_remote_repo](https://github.com/user-attachments/assets/17213462-c9b5-4d2e-a84c-ab656035523f)
 
 Option 2: Using a Python Artifact Registry Standard Repository pre-populated by a "Public Host", and then accessed by a "Private Host"
-![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/83b1cd84-1202-4877-aa4e-9a789a3360c5)
+![pip_private_ar_standard_repos](https://github.com/user-attachments/assets/284c9c86-6437-4357-aba9-26ec3885627c)
 
 Note: The configuration scripts will configure the hosts to use the Python binaries located in the "/usr/lib/google-cloud-sdk/platform/bundledpythonunix/bin", which is typical of stock GCE VM images running on Google Cloud. Please modify the scripts to use a different Python installation, if needed.
 
